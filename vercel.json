@@ -1,0 +1,12 @@
+{
+  "rewrites": [
+    {
+      "source": "/api/categorize",
+      "destination": "/api/categorize"
+    },
+    {
+      "source": "/(.*)",
+      "destination": "/index.html"
+    }
+  ]
+}

@@ -1,0 +1,145 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --bg-primary: #070B18;
+  --bg-secondary: #10182B;
+  --glass-bg: rgba(16, 24, 43, 0.65);
+  --glass-border: rgba(255, 255, 255, 0.08);
+  --text-primary: #F8FAFC;
+  --text-secondary: #94A3B8;
+}
+
+html.light {
+  --bg-primary: #F1F5F9;
+  --bg-secondary: #FFFFFF;
+  --glass-bg: rgba(255, 255, 255, 0.82);
+  --glass-border: rgba(15, 23, 42, 0.1);
+  --text-primary: #0F172A;
+  --text-secondary: #475569;
+}
+
+body {
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  font-family: 'Inter', sans-serif;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Space Grotesk', sans-serif;
+}
+
+/* Custom Glassmorphism */
+.glass-panel {
+  background: var(--glass-bg);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid var(--glass-border);
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.32), inset 0 1px 0 0 rgba(255, 255, 255, 0.08);
+}
+
+.glass-panel-interactive {
+  background: var(--glass-bg);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid var(--glass-border);
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.32), inset 0 1px 0 0 rgba(255, 255, 255, 0.08);
+  transition: transform 0.25s cubic-bezier(0.22, 1, 0.36, 1), border-color 0.25s ease, box-shadow 0.25s ease;
+}
+
+.glass-panel-interactive:hover {
+  border-color: rgba(34, 211, 238, 0.35);
+  box-shadow: 0 14px 40px 0 rgba(0, 0, 0, 0.45), 0 0 20px rgba(34, 211, 238, 0.12), inset 0 1px 0 0 rgba(255, 255, 255, 0.15);
+}
+
+/* Illuminated input focus */
+.fintech-input {
+  background: rgba(7, 11, 24, 0.6);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: #F8FAFC;
+  transition: all 0.2s ease;
+}
+
+html.light .fintech-input {
+  background: rgba(241, 245, 249, 0.9);
+  border: 1px solid rgba(15, 23, 42, 0.15);
+  color: #0F172A;
+}
+
+.fintech-input:focus {
+  outline: none;
+  border-color: #22D3EE;
+  box-shadow: 0 0 0 3px rgba(34, 211, 238, 0.18), 0 0 15px rgba(34, 211, 238, 0.2);
+}
+
+/* Animated gradient border for featured glass panels */
+@keyframes borderGlow {
+  0%, 100% {
+    border-color: rgba(34, 211, 238, 0.3);
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.4), 0 0 20px rgba(34, 211, 238, 0.12);
+  }
+  50% {
+    border-color: rgba(139, 92, 246, 0.4);
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.4), 0 0 24px rgba(139, 92, 246, 0.16);
+  }
+}
+
+.animated-glass-border {
+  animation: borderGlow 5s ease-in-out infinite;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(7, 11, 24, 0.4);
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(148, 163, 184, 0.25);
+  border-radius: 9999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(34, 211, 238, 0.5);
+}
+
+/* Reduced Motion */
+html.reduce-motion *,
+html.reduce-motion *::before,
+html.reduce-motion *::after {
+  animation-duration: 0.01ms !important;
+  animation-iteration-count: 1 !important;
+  transition-duration: 0.01ms !important;
+  scroll-behavior: auto !important;
+}
+
+/* Print Styles for Monthly Report PDF Export */
+@media print {
+  body {
+    background: #FFFFFF !important;
+    color: #0F172A !important;
+  }
+  .no-print {
+    display: none !important;
+  }
+  .print-only {
+    display: block !important;
+  }
+  .glass-panel,
+  .glass-panel-interactive {
+    background: #FFFFFF !important;
+    border: 1px solid #CBD5E1 !important;
+    box-shadow: none !important;
+    color: #0F172A !important;
+    backdrop-filter: none !important;
+  }
+  * {
+    color: #0F172A !important;
+  }
+}
